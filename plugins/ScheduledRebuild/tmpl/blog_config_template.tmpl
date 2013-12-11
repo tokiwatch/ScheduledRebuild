@@ -1,0 +1,21 @@
+<mtapp:setting
+    id="scheduled_rebuild_enable"
+    label="<__trans phrase="ScheduledRebuild enable:">">
+    <p><input type="checkbox" value="1" name="scheduled_rebuild_enable" id="scheduled_rebuild_enable"<mt:if name="scheduled_rebuild_enable"> checked="checked"</mt:if> class="cb"/></p>
+</mtapp:setting>
+
+<mtapp:setting
+    id="scheduled_rebuild_list"
+    label="<__trans phrase="ScheduledRebuild target template list:">"
+    hint="">
+    <p>
+    <textarea class="full text low" name="scheduled_rebuild_list" id=scheduled_rebuild_list"><mt:var name="scheduled_rebuild_list" escape="html"></textarea><br />
+<__trans phrase="RebuildOncetimePerDay target template ids Hint">
+</p>
+</mtapp:setting>
+<mtapp:setting
+    id="scheduled_rebuild_last_time"
+    label="<__trans phrase="ScheduledRebuild last time:">"
+    hint="">
+    <input type="text" name="scheduled_rebuild_last_time" id="scheduled_rebuild_last_time" value="<mt:var name="scheduled_rebuild_last_time" escape="html">" />
+</mtapp:setting>

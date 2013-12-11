@@ -1,0 +1,21 @@
+id: scheduledrebuild
+key: MT::Plugin::ScheduledRebuild
+name: ScheduledRebuild
+version: 0.1
+description: <MT_TRANS phrase='description of ScheduledRebuild'>
+doc_link: http://m-logic.co.jp/mt-plugins/mt-scheduled_rebuild/docs/mt-scheduled_rebuild.html
+author_name: Takuji Tokiwa
+author_link: http://www.allianceport.jp/
+l10n_class: ScheduledRebuild::L10N
+blog_config_template: blog_config_template.tmpl
+settings:
+    scheduled_rebuild_enable:
+        default: 0
+    scheduled_rebuild_list:
+    scheduled_rebuild_last_time:
+        default: 0:01
+tasks:
+    ScheduledRebuild:
+        label: ScheduledRebuild
+        frequency: 60
+        code: $ScheduledRebuild::ScheduledRebuild::Plugin::do_scheduled_rebuild
