@@ -6,6 +6,7 @@
 
 ## インストール
 
+1. CPANモジュール YAML::Syckがインストールされていることを確認し、インストールされていない場合はインストールしてください。
 1. (事前準備) run-periodic-taskが定期的に実行されるようにcronを設定してください。
 1. プラグインを、MTのプラグインディレクトリに設置してください。
 
@@ -90,5 +91,5 @@
 連絡先
 ------
 
-作者：[Alliance Port, LLC](http://www.allianceport.jp/)
+作者：[Takuji Tokiwa](https://github.com/tokiwatch)
 

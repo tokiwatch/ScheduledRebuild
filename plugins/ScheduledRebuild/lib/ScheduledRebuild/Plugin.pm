@@ -4,20 +4,10 @@ package ScheduledRebuild::Plugin;
 
 use strict;
 use warnings;
-use YAML::Tiny;
-use Data::Dumper;
-use Data::Dump qw(dump);
+use YAML::Syck;
 
 sub plugin {
     return MT->component('ScheduledRebuild');
-}
-
-sub _log{
-    my ($msg) = @_;
-    return unless defined($msg);
-    require MT;
-    MT->log({message=>$msg});
-    1;
 }
 
 sub get_config {
@@ -35,10 +25,9 @@ sub get_config {
 sub do_rebuild {
     my ($blog_id, $yaml_string, $current_ts) = @_;
     my ($year, $month, $today, $hour, $min) = unpack ('A4A2A2A2A2', $current_ts);
-    my $yaml_data = YAML::Tiny->read_string($yaml_string);
-    my @list = @{$yaml_data->[0]};
+    my $list = Load($yaml_string);
     my $last_ts = get_config('scheduled_rebuild_last_time', $blog_id);
-    foreach my $a (@list){
+    foreach my $a (@$list){
         my @time_table = ();
         my @hour = @{$a->{hour}};
         my @min  = @{$a->{min}};
@@ -49,7 +38,7 @@ sub do_rebuild {
                 my $target_ts = $year.$month.$today.$h2.$m2;
                 push(@time_table,$target_ts);
             }
-
+# 
         }
         my $flag = 0;
         foreach my $target_ts (@time_table){
@@ -119,14 +108,12 @@ sub blog_rebuild{
     1;
 }
 
-
-
 #----- Task
 sub do_scheduled_rebuild {
     my $ts =time();
     blog_rebuild($ts);
     website_rebuild($ts);
-    1
+    1;
 }
 
 1;
